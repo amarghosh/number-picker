@@ -149,17 +149,31 @@ public class NumberPicker extends FrameLayout implements View.OnClickListener {
     }
 
     private void incrementValue() {
-        if (mValue < mMaxValue) {
-            mValue++;
-            updateAndNotify();
-        }
+        int delta = mStep;
+
+        if (mValue >= mMaxValue)
+            return;
+
+        // ceil
+        if (mValue + delta > mMaxValue)
+            delta = mMaxValue - mValue;
+
+        mValue += delta;
+        updateAndNotify();
     }
 
     private void decrementValue() {
-        if (mValue > mMinValue) {
-            mValue--;
-            updateAndNotify();
-        }
+        int delta = mStep;
+
+        if (mValue <= mMinValue)
+            return;
+
+        // floor
+        if (mValue - delta < mMinValue)
+            delta = mValue - mMinValue;
+
+        mValue -= delta;
+        updateAndNotify();
     }
 
     @Override

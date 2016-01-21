@@ -17,6 +17,7 @@
         app:value="10"
         app:minValue="5"
         app:maxValue="15"
+        app:step="2"
         />
 
 </LinearLayout>
